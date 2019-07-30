@@ -1,0 +1,177 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Shop Homepage - Start Bootstrap Template</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href='{% static "main/vendor/bootstrap/css/bootstrap.min.css" %}' rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href='{% static "main/css/shop-homepage.css" %}' rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-danger bg-danger fixed-top">
+    <div class="container">
+      <strong>
+        <a class="navbar-brand text-white bg-danger" href="{% url 'index' %}"> Artist 101 </a>
+      </strong>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link text-white bg-danger" href="{% url 'index' %}">Home
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link text-white bg-danger" href="{% url 'about' %}">About</a>
+            <span class="sr-only">(current)</span>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white bg-danger" href="{% url 'services' %}">Services</a>
+          </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item dropdown">
+              <a class="nav-link text-white dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">환영합니다. {{ user.username }} 님!</a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="{% url 'mypage' %}">My page</a>
+                      <a class="dropdown-item" href="{% url 'mypage' %}">글쓰기</a>
+                  </div>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link text-white bg-danger" href="{% url 'logout' %}">Logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+              <a class="nav-link text-white bg-danger" href="{% url 'login' %}">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white bg-danger" href="{% url 'join' %}">Join</a>
+        </li>
+          {% endif %}
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <br>
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-lg-3">
+        <strong>
+        <h1 class="my-4"  style="font-family: 'Jua', sans-serif;">Artist101 </h1>
+        </strong>
+      </div>
+      <!-- /.col-lg-3 -->
+
+      <div class="col-lg-9">
+
+        
+
+        <div class="row">
+            
+              <br>
+              <div style="text-align: center;"></div>
+              <br>
+              <form action="{% url 'create' %}">
+                <div class="form-group">
+                  <label for="formGroupExampleInput" style="font-family: 'Jua', sans-serif; font-size: x-large;">제목</label>
+                  <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Please write your title" name="title">
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1" style="font-family: 'Jua', sans-serif; font-size: x-large;">본문</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" cols="70" placeholder="Write something!" name="body"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput" style="font-family: 'Jua', sans-serif; font-size: x-large;">자격증</label>
+                  <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Please write your license" name = "license">
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput" style="font-family: 'Jua', sans-serif; font-size: x-large;">가격</label>
+                  <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Please write your price" name = "price">
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput" style="font-family: 'Jua', sans-serif; font-size: x-large;">가능한 장소</label>
+                  <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Please write your address" name="address">
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput" style="font-family: 'Jua', sans-serif; font-size: x-large;">서비스</label>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio1" name="customRadioNail" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio1">Beauty Nail</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio2" name="customRadioNail" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadio2">Make Up</label>
+                  </div><br>
+                
+                  <div class="form-group2">
+                    <label for="formGroupExampleInput" style="font-family: 'Jua', sans-serif; font-size: x-large;">출장 가능 여부</label>
+                    <div class="custom-control custom-radio">
+                      <input type="radio" id="Radio1" name="customRadio2" class="custom-control-input">
+                      <label class="custom-control-label" for="Radio1">출장 O</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                      <input type="radio" id="Radio2" name="customRadio2" class="custom-control-input">
+                      <label class="custom-control-label" for="Radio2">출장 X</label>
+                    </div><br>
+                   </div>
+                  <div class="form-group">
+                    <label for="exampleFormControlFile1" style= "font-family: 'Jua', sans-serif; font-size: x-large;">사진 넣기</label>
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image"><br>
+
+                  </div>
+                <input class="btn btn-danger" type="submit" value="글쓰기">
+                <br><br>
+            </form>
+
+        </div>
+        <!-- /.row -->
+      </div>
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-danger">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Artist 101 </p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src='{%static "main/vendor/jquery/jquery.min.js"%}'></script>
+  <script src='{%static "main/vendor/bootstrap/js/bootstrap.bundle.min.js"%}'></script>
+
+</body>
+
+</html>

@@ -1,0 +1,148 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Shop Homepage - Start Bootstrap Template</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href='{% static "main/vendor/bootstrap/css/bootstrap.min.css" %}' rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href='{% static "main/css/shop-homepage.css" %}' rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-danger bg-danger fixed-top">
+    <div class="container">
+      <strong>
+        <a class="navbar-brand text-white bg-danger" href="{% url 'index' %}"> Artist 101 </a>
+      </strong>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link text-white bg-danger" href="{% url 'index' %}">Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white bg-danger" href="{% url 'about' %}">About</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link text-white bg-danger" href="{% url 'services' %}">Services</a>
+            <span class="sr-only">(current)</span>
+          </li>
+          <!--<li class="nav-item">
+            <a class="nav-link text-white bg-danger" href="{% url 'login' %}">Login</a>
+          </li>-->
+          {% if user.is_authenticated %}
+          <li class="nav-item dropdown">
+              <a class="nav-link text-white dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">환영합니다. {{ user.username }} 님!</a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="{% url 'mypage' %}">My page</a>
+                  </div>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link text-white bg-danger" href="{% url 'logout' %}">Logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+              <a class="nav-link text-white bg-danger" href="{% url 'login' %}">Login</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link text-white bg-danger" href="{% url 'join' %}">Join</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <br>
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-lg-3">
+
+        <h1 class="my-4">Artist101 </h1>
+        
+
+      </div>
+      <!-- /.col-lg-3 -->
+
+      <div class="col-lg-9">
+
+        
+
+        <div class="row">
+            
+            <ul class="list-unstyled">
+              <br>
+              <div style="text-align: center;">
+                <img src = "../../static/main/images/think.jpg" alt="Think">
+              </div>
+              <br>
+                <blockquote class="blockquote text-center">
+                    <p class="mb-0" style="font-family: 'Jua', sans-serif; font-size: 150%;">처음인데 네일아트 어떻게 받지? / 특별한 날, 메이크업 받고 싶다!</p>
+                    <footer class="blockquote-footer" style="font-family: 'Jua', sans-serif; font-size: 130%;">간단하지만 어려운 일, 아티스트101에서 해결하세요!</footer>
+                  </blockquote>
+                
+                <li style="font-family: 'Jua', sans-serif; font-size: 130%;">시원해지니까 네일아트 해볼까? / 추우니까 네일아트 해볼까?</li>
+                <li style="font-family: 'Jua', sans-serif; font-size: 130%;">소개팅이니까 메이크업 받고싶은데 / 사진 찍으러 가기전에 메이크업 받고싶은데 어떡하지?</li>
+                <li style="font-family: 'Jua', sans-serif; font-size: 130%;">날이 좋아서, <em>날이 좋지 않아서,</em>  그날따라 도전해보고싶은 네일아트와 메이크업</li>
+                <li style="font-family: 'Jua', sans-serif; font-size: 130%;">내가 하면 망칠것 같고, 가서 하자니 돈이 부담스러운 당신을 위해 준비한 서비스!</li>
+                <li style="font-family: 'Jua', sans-serif; font-size: 130%;">개성적인 소비자들과 실험적인 아티스트들을 연결해드립니다 :D</li>
+                  <ul>
+                    <br>
+                    <li style="font-family: 'Jua', sans-serif; font-size: 130%;">저렴한 금액에 나만의 네일아트를 만들어보고싶은 고객</li>
+                    <li style="font-family: 'Jua', sans-serif; font-size: 130%;">다양한 기술을 시도해 볼 기회가 필요한 아티스트</li>
+                    <li style="font-family: 'Jua', sans-serif; font-size: 130%;">둘이 만나면 누이좋고 매부좋고!</li>
+                    <li style="font-family: 'Jua', sans-serif; font-size: 130%;">특별한 날이 아닌, 일상 속의 한 부분으로 :)</li>
+                  </ul>
+                </li>
+                <li><br><br><br></li>
+              </ul>
+
+
+        </div>
+        <!-- /.row -->
+
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-danger">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Artist 101 </p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src='{%static "main/vendor/jquery/jquery.min.js"%}'></script>
+  <script src='{%static "main/vendor/bootstrap/js/bootstrap.bundle.min.js"%}'></script>
+
+</body>
+
+</html>

@@ -1,0 +1,111 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Shop Homepage - Start Bootstrap Template</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href='{% static "main/vendor/bootstrap/css/bootstrap.min.css" %}' rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href='{% static "main/css/shop-homepage.css" %}' rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-danger bg-danger fixed-top">
+    <div class="container">
+      <strong>
+        <a class="navbar-brand text-white bg-danger" href="{% url 'index' %}"> Artist 101 </a>
+      </strong>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link text-white bg-danger" href="{% url 'index' %}">Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white bg-danger" href="{% url 'about' %}">About</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link text-white bg-danger" href="{% url 'services' %}">Services</a>
+            <span class="sr-only">(current)</span>
+          </li>
+          <!--<li class="nav-item">
+            <a class="nav-link text-white bg-danger" href="{% url 'login' %}">Login</a>
+          </li>-->
+          {% if user.is_authenticated %}
+          <li class="nav-item dropdown">
+              <a class="nav-link text-white dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">환영합니다. {{ user.username }} 님!</a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="{% url 'mypage' %}">My page</a>
+                  </div>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link text-white bg-danger" href="{% url 'logout' %}">Logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+              <a class="nav-link text-white bg-danger" href="{% url 'login' %}">Login</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link text-white bg-danger" href="{% url 'join' %}">Join</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-lg-3">
+
+        <h1 class="my-4">메이크업</h1>
+
+        <div class="list-group">
+          <a href="{% url 'beautynail' %}" class="list-group-item">Beauty Nail</a>
+          <a href="{% url 'makeup' %}" class="list-group-item">Make up</a>
+        </div>
+
+      </div>
+      
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <br>
+  <footer class="py-5 bg-danger" >
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; LIkelion &copy; Artist 101 </p>
+      </div>
+      <!-- /.container -->
+    </footer>
+  
+  <!-- Bootstrap core JavaScript -->
+  <script src='{%static "main/vendor/jquery/jquery.min.js"%}'></script>
+  <script src='{%static "main/vendor/bootstrap/js/bootstrap.bundle.min.js"%}'></script>
+
+</body>
+
+</html>

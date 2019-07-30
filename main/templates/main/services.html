@@ -1,0 +1,209 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Shop Homepage - Start Bootstrap Template</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href='{% static "main/vendor/bootstrap/css/bootstrap.min.css" %}' rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href='{% static "main/css/shop-homepage.css" %}' rel="stylesheet">
+
+  <body>
+
+      <!-- Navigation -->
+      <nav class="navbar navbar-expand-lg navbar-danger bg-danger fixed-top">
+        <div class="container">
+          <strong>
+        <a class="navbar-brand text-white bg-danger" href="{% url 'index' %}"> Artist 101 </a>
+      </strong>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link text-white bg-danger" href="{% url 'index' %}">Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white bg-danger" href="{% url 'about' %}">About</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link text-white bg-danger" href="{% url 'services' %}">Services</a>
+            <span class="sr-only">(current)</span>
+          </li> 
+          {% if user.is_authenticated %}
+          <li class="nav-item dropdown">
+              <a class="nav-link text-white dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">환영합니다. {{ user.username }} 님!</a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="{% url 'mypage' %}">My page</a>
+                      <a class="dropdown-item" href="{% url 'new' %}">글쓰기</a>
+                  </div>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link text-white bg-danger" href="{% url 'logout' %}">Logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+              <a class="nav-link text-white bg-danger" href="{% url 'login' %}">Login</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link text-white bg-danger" href="{% url 'join' %}">Join</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+<br>
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <!--<div class="col-lg-3">
+
+        <h1 class="my-4">네일/화장</h1>
+        <div class="list-group">
+          <a href="{% url 'beautynail' %}" class="list-group-item">Beauty Nail</a>
+          <a href="{% url 'makeup' %}" class="list-group-item">Make up</a>
+        </div>
+
+      </div>-->
+      <!-- /.col-lg-3-->
+      <br><br>
+      <div class="col-lg-9">
+
+        
+
+        <div class="row">
+          
+          <!--<div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="../../static/main/images/human.jpg" alt="extra_img"></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">* 젤 네일 받으세요~!! *</a>
+                </h4>
+                <h5> 20000원 </h5>
+                <p class="card-text">싼 가격으로 젤 네일을 받으세요!!  <br> -디자이너 : 이다현- </p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+              </div>
+            </div>
+          </div>-->
+
+          <!--{% for boards in posts %}
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100">
+                <a href="#"><img class="card-img-top" src="{{ portfolio.image.url }}" alt="extra_img"></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <a href="#">{{ boards.title }}</a>
+                  </h4>
+                  <h5> {{ boards.price }}원 </h5>
+                  <p class="card-text">{{ boards.body }} </p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                </div>
+              </div>
+            </div>
+          {% endfor %}-->
+
+          {% for boards in posts %}
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              {% if boards.image %}
+                <a href="#"><img class="card-img-top" src="{{ boards.image.url }}"></a>
+              {% endif %}
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">{{ boards.title }}</a>
+                </h4>
+                <h5> {{ boards.price }}원 </h5>
+                <p class="card-text">{{ boards.body }} </p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+
+
+          
+          
+          
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="container">
+              <div class="row">
+                      <ul class="pagination justify-content-center">
+                    
+                {%if posts.has_previous%}
+                  <li class="page-item">
+                    <a href="?page={{posts.previous_page_number}}" class="page-link" tabindex="-1" aria-disabled="true">이전</a>
+                  </li>
+                {%endif%}
+                
+                
+                  <li class="page-item">
+                    <a class="page-link" href="?page={{posts.number}}">{{posts.number}} / {{posts.paginator.num_pages}}</a>
+                  </li>
+                
+
+                <!--{% for i in page_range %}
+                  <li class="page-item">
+                    <a class="page-link" href="?page={{i}}">{{posts.i}}</a>
+                  </li>
+                {% endfor %}-->
+
+               {%if posts.has_next%}
+                  <li class="page-item">
+                      <a href="?page={{posts.next_page_number}}" class="page-link">다음</a>
+                  </li>
+                {%endif%}
+              </ul>
+            </nav>
+              </div>
+            </div>
+          </div>
+</div>
+
+        <!-- /.row -->
+
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+  
+  <!-- Footer -->
+  <footer class="py-5 bg-danger">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Artist 101 </p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src='{%static "main/vendor/jquery/jquery.min.js"%}'></script>
+  <script src='{%static "main/vendor/bootstrap/js/bootstrap.bundle.min.js"%}'></script>
+
+</body>
+
+</html>
